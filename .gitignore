@@ -1,0 +1,9 @@
+.coverage
+dist
+*egg-info
+*.pyo
+*.pyc
+*.log
+*.db
+*~
+
