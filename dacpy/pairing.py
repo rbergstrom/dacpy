@@ -26,7 +26,7 @@ import socket
 import struct
 import urllib2
 
-import types
+from types import Node
 
 __all__  = ['generate_code', 'TouchRemote', 'TouchRemoteListener']
 
@@ -58,7 +58,7 @@ class TouchRemote(object):
             resp = urllib2.urlopen('http://%s:%d/pair?pairingcode=%s&servicename=%s' % (
                 self.address, self.port, hashcode, servicename
             ))
-            node = dacp.NodeValue.deserialize(resp.read())
+            node = Node.deserialize(resp.read())
 
             logging.info('Pairing successful with GUID %016X' % node.cmpg[0])
 
