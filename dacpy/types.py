@@ -263,12 +263,15 @@ class String(DAAPType):
     Unicode string value. Default encoding is utf-8, which is what is used by
     both iTunes and the Remote app. Other encodings can be used, but there is
     no guarantee that the receiving application will properly decode them.
-    
+
     Serialized as a byte string with no length bytes or null terminator.
     """
     def __init__(self, value, codec='utf-8'):
         self.codec = codec
-        self.value = unicode(value)
+        if isinstance(value, unicode):
+            self.value = value
+        else:
+            self.value = unicode(value, codec)
         self.length = len(self.serialize())
 
     def serialize(self):
